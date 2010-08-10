@@ -30,7 +30,6 @@ import org.apache.commons.collections.functors.OrPredicate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.core.ReflectiveVisitorHelper;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springmodules.validation.valang.functions.AbstractFunction;
