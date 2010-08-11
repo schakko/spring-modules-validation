@@ -128,16 +128,6 @@ public class DefaultXmlBeanValidationConfigurationLoaderIntegrationTests extends
         assertFalse(errors.hasErrors());
     }
 
-    public void testValidationBean_WhenNotDeployedInApplicationContext() throws Exception {
-        try {
-            createLoader("TestBean1.vld.xml");
-            fail("Expecting an UnsupportedOperationException for the configuration loader is not deployed in " +
-                "an application context");
-        } catch (ResourceConfigurationLoadingException rcle) {
-            // expected
-        }
-    }
-
     public void testConditionBean_WhenDeployedInApplicationContext() throws Exception {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("appCtxt.xml", getClass());
         DefaultXmlBeanValidationConfigurationLoader loader = createLoader("TestBean2.vld.xml", context);
@@ -155,16 +145,6 @@ public class DefaultXmlBeanValidationConfigurationLoaderIntegrationTests extends
         errors = new BindException(bean, "bean");
         validator.validate(bean, errors);
         assertFalse(errors.hasErrors());
-    }
-
-    public void testConditionBean_WhenNotDeployedInApplicationContext() throws Exception {
-        try {
-            createLoader("TestBean2.vld.xml");
-            fail("Expecting an UnsupportedOperationException for the configuration loader is not deployed in " +
-                "an application context");
-        } catch (ResourceConfigurationLoadingException rcle) {
-            // expected
-        }
     }
 
     public void testShortCircuiteValidationDisabled() throws Exception {

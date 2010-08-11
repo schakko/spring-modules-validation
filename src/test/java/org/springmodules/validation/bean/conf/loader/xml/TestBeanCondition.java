@@ -16,9 +16,7 @@
 
 package org.springmodules.validation.bean.conf.loader.xml;
 
-import org.springmodules.validation.validator.AbstractTypeSpecificValidator;
 import org.springmodules.validation.util.condition.AbstractCondition;
-import org.springframework.validation.Errors;
 
 /**
  * @author Uri Boness

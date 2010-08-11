@@ -16,6 +16,8 @@
 
 package org.springmodules.validation.util.cel.valang;
 
+import ognl.TokenMgrError;
+
 import org.springmodules.validation.util.cel.CelParseException;
 import org.springmodules.validation.util.cel.ConditionExpressionParser;
 import org.springmodules.validation.util.condition.Condition;
@@ -24,18 +26,23 @@ import org.springmodules.validation.valang.parser.ParseException;
 import org.springmodules.validation.valang.parser.SimpleValangBased;
 
 /**
- * A {@link ConditionExpressionParser} implementation that knows how to parse valang boolean expressions.
- *
+ * A {@link ConditionExpressionParser} implementation that knows how to parse
+ * valang boolean expressions.
+ * 
  * @author Uri Boness
  */
-public class ValangConditionExpressionParser extends SimpleValangBased implements ConditionExpressionParser {
+public class ValangConditionExpressionParser extends SimpleValangBased
+		implements ConditionExpressionParser
+{
 
-    public Condition parse(String expression) throws CelParseException {
+	public Condition parse(String expression) throws CelParseException {
         try {
             return new CommonsPredicateCondition(createValangParser(expression).parseExpression());
         } catch (ParseException pe) {
             throw new CelParseException("Could not parse valang expression '" + expression + "'", pe);
         }
+        catch (TokenMgrError tme) {
+        	throw new CelParseException("Could not parse valang expression '" + expression + "': " + tme.getMessage(), tme);
+        }
     }
-
 }
